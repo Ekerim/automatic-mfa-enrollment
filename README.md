@@ -1,7 +1,7 @@
 # Automatic MFA Enrollment
 A simple /etc/profile.d/ script to facilitate enforcing Multi-Factor Authentication for SSH connections on Linux using Google Authenticator.
 
-Designed and tested for use in Openssh / Thinlinc environments on RHEL based system, but should work on most Linux servers as long as they support `google-authenticator`.
+Designed and tested for use in OpenSSH / Thinlinc environments on RHEL based system, but should work on most Linux servers as long as they support `google-authenticator`.
 
 The script blocks non-interactive SSH sessions (such as scp/sftp/ssh command/Thinlinc login) until the user connects to the server using an interactive SSH session which triggers the MFA enrollment procedure.
 
@@ -52,7 +52,7 @@ RHEL based distros:
     ... etc ...
     ```
     `pam_google_authenticator.so` is what triggers the use of MFA at login.
-    `nullok` is required to allow that first unenrolled login that let's users enroll, but also facilitates the `optional-mfa` functionality
+    `nullok` is required to allow that first unenrolled login that lets users enroll, but also facilitates the `optional-mfa` functionality
 6. Add a file, `/etc/ssh/sshd_config.d/10-mfa-split.conf`, with the following content.
     ```sh
     UsePAM yes
@@ -67,7 +67,7 @@ RHEL based distros:
     # Either: key-only  OR  PAM interactive (password + TOTP)
     AuthenticationMethods publickey keyboard-interactive
     ```
-    Make sure the settings you just added are not overridden by an other file in the same directory. On RHEL derived systems, the file `50-redhat.conf`
+    Make sure the settings you just added are not overridden by another file in the same directory. On RHEL derived systems, the file `50-redhat.conf`
     contains some of the same settings and you are recommended to comment them out so as to not interfere with what you just added in step 6.
 7. Restart sshd
     ```
