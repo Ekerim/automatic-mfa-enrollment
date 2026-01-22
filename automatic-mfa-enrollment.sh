@@ -139,7 +139,7 @@ _mfa_abort() {
   kill -HUP "$$" 2>/dev/null
   exit
 }
-trap _mfa_abort INT TERM
+trap _mfa_abort INT TERM QUIT TSTP
 
 U="${USER:-$(id -un 2>/dev/null)}"
 
