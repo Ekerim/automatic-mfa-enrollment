@@ -12,7 +12,7 @@ The script blocks non-interactive SSH sessions (such as scp/sftp/ssh command/Thi
 - The OS group `no-mfa` can be used to opt-out a user completely from MFA
 - `root` is never forced to enroll but supports MFA if enrolled, same as members of the `optional-mfa` group
 - `su`/`sudo` does not trigger MFA enrollment
-- Prevents escaping enrollment using Ctrl+C
+- Prevents escaping enrollment using Ctrl+C (INT), Ctrl+Z (TSTP) and Ctrl+\ (QUIT)
 - Logs progress of MFA enrollment process using `logger -t mfa-enroll`
 
 ## Requirements
