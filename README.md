@@ -176,7 +176,7 @@ During an SSH login:
 
 ## Troubleshooting
 - Check that `google-authenticator` and `timeout` exist in `PATH`.
-- Review `logger -t mfa-enroll` output for the failure reason.
+- Review `journalctl -t mfa-enroll` output for the failure reason.
 
 ## Limitations
 This is not a limitation of the auto-enrollment script but rather with how Thinlinc work. The emergency scratch codes provided when enrolled can't be used. This is because Thinlinc logs in using the same OTP code twice, first to the vsmserver and then to the vsmagent. As these emergency codes can only be used once, they fail to login.
