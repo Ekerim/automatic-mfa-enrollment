@@ -16,7 +16,7 @@ The script blocks non-interactive SSH sessions (such as scp/sftp/ssh command/Thi
 - Logs progress of MFA enrollment process using `logger -t mfa-enroll`
 
 ## Requirements
-- Bash-compatible login shell
+- Bash- or Csh-compatible login shell
 - `google-authenticator` and `qrencode` installed on the system
 - GNU `timeout` (from GNU coreutils) for enrollment deadlines
 - SSH environments where interactive logins can be intercepted (OpenSSH, and optionally ThinLinc)
@@ -36,7 +36,7 @@ RHEL based distros:
     ```
     sudo dnf install google-authenticator -y
     ```
-4. Copy `automatic-mfa-enrollment.sh` to `/etc/profile.d/` and make sure everyone has read permission
+4. Copy `automatic-mfa-enrollment.*` to `/etc/profile.d/` and make sure everyone has read permission
 5. Configure `/etc/pam.d/sshd`.
     The auth section of my sshd PAM file looks like
     ```sh

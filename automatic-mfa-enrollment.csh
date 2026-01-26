@@ -1,5 +1,3 @@
-#!/bin/tcsh
-
 #
 # automatic-mfa-enrollment.csh
 #

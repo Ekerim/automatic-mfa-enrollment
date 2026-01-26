@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #
 # automatic-mfa-enrollment.sh
 #
