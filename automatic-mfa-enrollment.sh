@@ -151,6 +151,20 @@ logger -t mfa-enroll "Starting MFA enrollment: user=$U flags=$- tty=$(tty 2>/dev
 # Track enrollment phase for signal handling
 ENROLL_PHASE="enrolling"
 
+#
+# Microsoft Authenticator has issues with default output format of libqrencode, but supports UTF8_INVERSE.
+# If UTF8_INVERSE is not available, we will fall back to the first supported inverse QR mode.
+# If no INVERSE mode is supported, we will use the default QR mode (which may not work with Microsoft Authenticator).
+#
+# Prefer UTF8_INVERSE, falling back to the first supported inverse QR mode.
+INVERSE_MODES=$(google-authenticator --help 2>/dev/null |
+  grep -Po --color=never '[^,{]+_INVERSE')
+
+QR_MODE=$(printf '%s\n' "$INVERSE_MODES" | grep -x UTF8_INVERSE)
+[ -n "$QR_MODE" ] || QR_MODE=$(printf '%s\n' "$INVERSE_MODES" | head -n 1)
+
+[ -z "$QR_MODE" ] || GA_CMD="$GA_CMD -Q $QR_MODE"
+
 if [ -n "$TIMEOUT_CMD" ]; then
   $TIMEOUT_CMD $GA_CMD
 else

@@ -124,6 +124,19 @@ set enrollment_verified = 0
 
 logger -t mfa-enroll "Starting MFA enrollment: user=$U pid=$$"
 
+#
+# Microsoft Authenticator has issues with default output format of libqrencode, but supports UTF8_INVERSE.
+# If UTF8_INVERSE is not available, we will fall back to the first supported inverse QR mode.
+# If no INVERSE mode is supported, we will use the default QR mode (which may not work with Microsoft Authenticator).
+#
+# Prefer UTF8_INVERSE, falling back to the first supported inverse QR mode.
+set INVERSE_MODES = (`sh -c 'google-authenticator --help 2>/dev/null' | grep -Po --color=never '[^,{]+_INVERSE'`)
+
+set QR_MODE = "`printf '%s\n' $INVERSE_MODES | grep -x UTF8_INVERSE`"
+if ("$QR_MODE" == "") set QR_MODE = "`printf '%s\n' $INVERSE_MODES | head -n 1`"
+
+if ("$QR_MODE" != "") set GA_CMD = "$GA_CMD -Q $QR_MODE"
+
 # Execute GA
 if ( "$TIMEOUT_CMD" != "" ) then
     $TIMEOUT_CMD $GA_CMD ; set rc = $status

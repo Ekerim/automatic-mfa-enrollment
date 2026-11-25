@@ -20,6 +20,7 @@ The script blocks non-interactive SSH sessions (such as scp/sftp/ssh command/Thi
 - `google-authenticator` and `qrencode` installed on the system
 - GNU `timeout` (from GNU coreutils) for enrollment deadlines
 - SSH environments where interactive logins can be intercepted (OpenSSH, and optionally ThinLinc)
+- `google-authenticator` version 1.11 or above to support Microsoft Authenticator.
 
 ## Installation
 
@@ -180,6 +181,9 @@ During an SSH login:
 
 ## Limitations
 This is not a limitation of the auto-enrollment script but rather with how Thinlinc work. The emergency scratch codes provided when enrolled can't be used. This is because Thinlinc logs in using the same OTP code twice, first to the vsmserver and then to the vsmagent. As these emergency codes can only be used once, they fail to login.
+
+Microsoft Authenticator has issues with the default format of libqrencode, but works with `UTF8_INVERSE` output format.
+`google-authenticator` supports this format in version 1.11 and above.
 
 ## Contributing
 Issues and pull requests are welcome; describe your environment and how you verified changes.
