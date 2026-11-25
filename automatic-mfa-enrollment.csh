@@ -54,7 +54,7 @@ set TIMEOUT_CMD = "timeout --foreground --signal=SIGINT $TIMEOUT"
 # '-f' is required so that writing of the ~/.google-authenticator file is forced
 # '-D' is required to support Thinlinc logins (See https://www.cendio.com/resources/docs/tag/authentication_otp.html)
 # If you have changed GOOGLE_AUTH_FILE from the default value, you need to add '-s $GOOGLE_AUTH_FILE' here
-set GA_ARGS = "-f -t -D -r 3 -R 30 -S 30 -w 9"
+set GA_ARGS = "-f -t -D -r 3 -R 30 -S 30 -w 3"
 
 # Full command that runs google-authenticator with the configured arguments.
 set GA_CMD = "google-authenticator $GA_ARGS"
