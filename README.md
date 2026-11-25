@@ -184,6 +184,8 @@ This is not a limitation of the auto-enrollment script but rather with how Thinl
 
 Microsoft Authenticator has issues with the default format of libqrencode, but works with `UTF8_INVERSE` output format.
 `google-authenticator` supports this format in version 1.11 and above.
+`google-authenticator-libpam` can easily be compiled for older distributions by cloning 
+`https://github.com/google/google-authenticator-libpam.git` and checking out tag 1.11 or newer. Just make sure to have a relatively new `libqrencode`. The procedure has been tested with `qrencode-devel-4.1.1-1.el9.x86_64` on Rocky Linux 9.5.
 
 ## Contributing
 Issues and pull requests are welcome; describe your environment and how you verified changes.
