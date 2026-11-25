@@ -38,6 +38,14 @@ RHEL based distros:
     sudo dnf install google-authenticator -y
     ```
 4. Copy `automatic-mfa-enrollment.*` to `/etc/profile.d/` and make sure everyone has read permission
+    ```
+    cd /var/tmp/
+    curl -o automatic-mfa-enrollment.sh https://raw.githubusercontent.com/Ekerim/automatic-mfa-enrollment/refs/heads/main/automatic-mfa-enrollment.sh
+    curl -o automatic-mfa-enrollment.csh https://raw.githubusercontent.com/Ekerim/automatic-mfa-enrollment/refs/heads/main/automatic-mfa-enrollment.csh
+    chown root:root /var/tmp/automatic-mfa-enrollment.*
+    chmod 644 /var/tmp/automatic-mfa-enrollment.*
+    mv /var/tmp/automatic-mfa-enrollment.* /etc/profile.d/
+    ```
 5. Configure `/etc/pam.d/sshd`.
     The auth section of my sshd PAM file looks like
     ```sh
