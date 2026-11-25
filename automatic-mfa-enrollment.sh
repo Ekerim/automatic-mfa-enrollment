@@ -64,7 +64,7 @@ GA_CMD="google-authenticator $GA_ARGS"
 #
 
 # LOG: script entry point
-logger -t mfa-enroll "START enrollment script: user=${USER:-unknown} uid=$EUID shell=$SHELL tty=$(tty 2>/dev/null) pid=$$ flags=$-"
+# logger -t mfa-enroll "START enrollment script: user=${USER:-unknown} uid=$EUID shell=$SHELL tty=$(tty 2>/dev/null) pid=$$ flags=$-"
 
 # Do not enforce MFA for root
 [ "$EUID" -eq 0 ] && return
@@ -87,7 +87,7 @@ esac
 
 # Already enrolled
 if [ -f "$GOOGLE_AUTH_FILE" ]; then
-  logger -t mfa-enroll "User already enrolled, skipping enrollment: user=${USER:-$(id -un 2>/dev/null)}"
+  # logger -t mfa-enroll "User already enrolled, skipping enrollment: user=${USER:-$(id -un 2>/dev/null)}"
   return
 fi
 

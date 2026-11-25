@@ -77,7 +77,7 @@ endif
 set is_interactive = $?prompt
 
 # LOG: script entry point
-logger -t mfa-enroll "START enrollment script (csh): user=$U uid=$uid interactive=$is_interactive pid=$$"
+# logger -t mfa-enroll "START enrollment script (csh): user=$U uid=$uid interactive=$is_interactive pid=$$"
 
 # Do not enforce MFA for root
 if ( "$uid" == "0" ) goto end
@@ -94,7 +94,7 @@ if ( $status == 0 ) goto end
 
 # Already enrolled check
 if ( -f "$GOOGLE_AUTH_FILE" ) then
-    logger -t mfa-enroll "User already enrolled, skipping: user=$U"
+    # logger -t mfa-enroll "User already enrolled, skipping: user=$U"
     goto end
 endif
 
